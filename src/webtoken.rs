@@ -25,7 +25,7 @@ py_class!(pub class Token |py| {
 
 impl Token {
     pub fn get(py: Python,
-               session: &librespot::session::Session,
+               session: &librespot::core::session::Session,
                handle : Remote,
                client_id: &str, scopes: &str)
         -> PyResult<PyFuture>

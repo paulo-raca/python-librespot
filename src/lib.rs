@@ -13,16 +13,16 @@ mod metadata;
 mod webtoken;
 
 py_class!(pub class SpotifyId |py| {
-    data id : librespot::util::SpotifyId;
+    data id : librespot::core::util::SpotifyId;
 
     def __new__(_cls, base62: &str) -> PyResult<SpotifyId> {
-        let id = librespot::util::SpotifyId::from_base62(base62);
+        let id = librespot::core::util::SpotifyId::from_base62(base62);
         SpotifyId::create_instance(py, id)
     }
 });
 
 impl SpotifyId {
-    pub fn new(py: Python, id: librespot::util::SpotifyId) -> PyResult<SpotifyId> {
+    pub fn new(py: Python, id: librespot::core::util::SpotifyId) -> PyResult<SpotifyId> {
         SpotifyId::create_instance(py, id)
     }
 }
