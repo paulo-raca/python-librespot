@@ -14,9 +14,10 @@ use SpotifyId;
 
 py_class!(pub class Session |py| {
     data session : librespot::core::session::Session;
+    data pipe_path: Option<String>;
     data handle: Remote;
 
-    @classmethod def connect(_cls, username: String, password: String) -> PyResult<PyFuture> {
+    @classmethod def connect(_cls, username: String, password: String, pipe_path: String) -> PyResult<PyFuture> {
         use librespot::core::config::SessionConfig;
         use librespot::core::authentication::Credentials;
 
@@ -43,15 +44,21 @@ py_class!(pub class Session |py| {
 
         PyFuture::new(py, handle.clone(), session_rx, move |py, result| {
             let session = result.unwrap();
-            Session::create_instance(py, session, handle)
+            let mut opt_pipe_path = None;
+            if !pipe_path.is_empty() {
+                opt_pipe_path = Some(pipe_path);
+            }
+
+            Session::create_instance(py, session, opt_pipe_path, handle)
         })
     }
 
     def player(&self) -> PyResult<Player> {
         let session = self.session(py).clone();
         let handle = self.handle(py).clone();
+        let pipe_path = self.pipe_path(py).clone();
 
-        Player::new(py, session, handle)
+        Player::new(py, session, pipe_path, handle)
     }
 
     def get_track(&self, track: SpotifyId) -> PyResult<PyFuture> {

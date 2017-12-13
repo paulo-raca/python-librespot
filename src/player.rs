@@ -33,13 +33,14 @@ py_class!(pub class Player |py| {
 });
 
 impl Player {
-    pub fn new(py: Python, session: librespot::core::session::Session, handle: Remote) -> PyResult<Player> {
+    pub fn new(py: Python, session: librespot::core::session::Session, pipe_path: Option<String>, handle: Remote) -> PyResult<Player> {
         use librespot::core::config::PlayerConfig;
         
         let config = PlayerConfig::default();
+        // Uses default backend: Pipe
         let backend = librespot::audio_backend::find(None).unwrap();
         
-        let player = librespot::player::Player::new(config, session, None, move || (backend)(None));
+        let player = librespot::player::Player::new(config, session, None, move || (backend)(pipe_path));
         Player::create_instance(py, player, handle)
     }
 }
