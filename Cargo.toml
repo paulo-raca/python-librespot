@@ -18,3 +18,5 @@ features = []
 
 [dependencies.cpython]
 git = "https://github.com/dgrunwald/rust-cpython.git"
+default-features = false
+features = ['python3-sys']
