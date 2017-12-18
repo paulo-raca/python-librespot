@@ -13,8 +13,9 @@ futures = "0.1.0"
 
 [dependencies.librespot]
 git = "https://github.com/Bert-Proesmans/librespot.git"
+#path = "D:/Git/librespot"
 default-features = false
-features = ['with-lewton']
+features = ['']
 
 [dependencies.cpython]
 git = "https://github.com/dgrunwald/rust-cpython.git"

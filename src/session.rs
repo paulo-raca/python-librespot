@@ -1,7 +1,7 @@
 use librespot;
 use std::thread;
 use tokio_core::reactor::Core;
-use cpython::PyResult;
+use cpython::{PyResult, PyObject, PyClone};
 use futures;
 use tokio_core::reactor::Remote;
 use futures::Future;
@@ -14,10 +14,10 @@ use SpotifyId;
 
 py_class!(pub class Session |py| {
     data session : librespot::core::session::Session;
-    data pipe_path: Option<String>;
+    data device: PyObject;
     data handle: Remote;
 
-    @classmethod def connect(_cls, username: String, password: String, pipe_path: String) -> PyResult<PyFuture> {
+    @classmethod def connect(_cls, username: String, password: String, device: PyObject) -> PyResult<PyFuture> {
         use librespot::core::config::SessionConfig;
         use librespot::core::authentication::Credentials;
 
@@ -44,21 +44,16 @@ py_class!(pub class Session |py| {
 
         PyFuture::new(py, handle.clone(), session_rx, move |py, result| {
             let session = result.unwrap();
-            let mut opt_pipe_path = None;
-            if !pipe_path.is_empty() {
-                opt_pipe_path = Some(pipe_path);
-            }
-
-            Session::create_instance(py, session, opt_pipe_path, handle)
+            Session::create_instance(py, session, device, handle)
         })
     }
 
     def player(&self) -> PyResult<Player> {
         let session = self.session(py).clone();
         let handle = self.handle(py).clone();
-        let pipe_path = self.pipe_path(py).clone();
+        let device = self.device(py).clone_ref(py);
 
-        Player::new(py, session, pipe_path, handle)
+        Player::new(py, session, device, handle)
     }
 
     def get_track(&self, track: SpotifyId) -> PyResult<PyFuture> {

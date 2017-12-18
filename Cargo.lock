@@ -81,7 +81,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "cpython"
 version = "0.1.0"
-source = "git+https://github.com/dgrunwald/rust-cpython.git#557652a1d18cdf7b91ff9749874dee438d492571"
+source = "git+https://github.com/dgrunwald/rust-cpython.git#a74eaeb3b6f13b63e37ded24a4b9a4404907e3cc"
 dependencies = [
  "libc 0.2.34 (registry+https://github.com/rust-lang/crates.io-index)",
  "num-traits 0.1.41 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -246,7 +246,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "librespot"
 version = "0.1.0"
-source = "git+https://github.com/Bert-Proesmans/librespot.git#08e908effd53cea087d552f30d8b54a8ece04bbf"
+source = "git+https://github.com/Bert-Proesmans/librespot.git#a3339de1257feacbdcb746a6bd9cae53c2fa567c"
 dependencies = [
  "base64 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "env_logger 0.4.3 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -277,7 +277,7 @@ dependencies = [
 [[package]]
 name = "librespot-audio"
 version = "0.1.0"
-source = "git+https://github.com/Bert-Proesmans/librespot.git#08e908effd53cea087d552f30d8b54a8ece04bbf"
+source = "git+https://github.com/Bert-Proesmans/librespot.git#a3339de1257feacbdcb746a6bd9cae53c2fa567c"
 dependencies = [
  "bit-set 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "byteorder 1.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -294,7 +294,7 @@ dependencies = [
 [[package]]
 name = "librespot-core"
 version = "0.1.0"
-source = "git+https://github.com/Bert-Proesmans/librespot.git#08e908effd53cea087d552f30d8b54a8ece04bbf"
+source = "git+https://github.com/Bert-Proesmans/librespot.git#a3339de1257feacbdcb746a6bd9cae53c2fa567c"
 dependencies = [
  "base64 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "byteorder 1.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -324,7 +324,7 @@ dependencies = [
 [[package]]
 name = "librespot-metadata"
 version = "0.1.0"
-source = "git+https://github.com/Bert-Proesmans/librespot.git#08e908effd53cea087d552f30d8b54a8ece04bbf"
+source = "git+https://github.com/Bert-Proesmans/librespot.git#a3339de1257feacbdcb746a6bd9cae53c2fa567c"
 dependencies = [
  "byteorder 1.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "futures 0.1.17 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -337,7 +337,7 @@ dependencies = [
 [[package]]
 name = "librespot-protocol"
 version = "0.1.0"
-source = "git+https://github.com/Bert-Proesmans/librespot.git#08e908effd53cea087d552f30d8b54a8ece04bbf"
+source = "git+https://github.com/Bert-Proesmans/librespot.git#a3339de1257feacbdcb746a6bd9cae53c2fa567c"
 dependencies = [
  "protobuf 1.4.3 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -536,7 +536,7 @@ dependencies = [
 [[package]]
 name = "python3-sys"
 version = "0.1.3"
-source = "git+https://github.com/dgrunwald/rust-cpython.git#557652a1d18cdf7b91ff9749874dee438d492571"
+source = "git+https://github.com/dgrunwald/rust-cpython.git#a74eaeb3b6f13b63e37ded24a4b9a4404907e3cc"
 dependencies = [
  "libc 0.2.34 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
