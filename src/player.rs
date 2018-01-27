@@ -30,6 +30,12 @@ py_class!(pub class Player |py| {
         player.pause();
         Ok(py.None())
     }
+
+    def stop(&self) -> PyResult<PyObject> {
+        let player = self.player(py);
+        player.stop();
+        Ok(py.None())
+    }
 });
 
 impl Player {
