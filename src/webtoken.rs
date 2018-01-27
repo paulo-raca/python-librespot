@@ -1,6 +1,6 @@
 use librespot;
-use cpython::{PyResult, Python};
-use pyfuture::PyFuture;
+use cpython::{PyResult, Python, PyObject};
+use pyfuture::py_wrap_future;
 use tokio_core::reactor::Remote;
 
 py_class!(pub class Token |py| {
@@ -28,10 +28,10 @@ impl Token {
                session: &librespot::core::session::Session,
                handle : Remote,
                client_id: &str, scopes: &str)
-        -> PyResult<PyFuture>
+        -> PyResult<PyObject>
     {
         let future = librespot::keymaster::get_token(session, client_id, scopes);
-        PyFuture::new(py, handle, future, move |py, result| {
+        py_wrap_future(py, handle, future, move |py, result| {
             let token = result.unwrap();
             Token::create_instance(py, token)
         })

@@ -1,20 +1,20 @@
 use librespot;
 use SpotifyId;
 use cpython::{PyResult, PyObject, Python, ObjectProtocol, PyBytes};
-use pyfuture::PyFuture;
+use pyfuture::py_wrap_future;
 use tokio_core::reactor::Remote;
 
 py_class!(pub class Player |py| {
     data player : librespot::player::Player;
     data handle: Remote;
 
-    def load(&self, track: SpotifyId, play: bool = true, position_ms: u32 = 0) -> PyResult<PyFuture> {
+    def load(&self, track: SpotifyId, play: bool = true, position_ms: u32 = 0) -> PyResult<PyObject> {
         let player = self.player(py);
         let handle = self.handle(py).clone();
         let track = *track.id(py);
 
         let end_of_track = player.load(track, play, position_ms);
-        PyFuture::new(py, handle, end_of_track, |_py, _result| {
+        py_wrap_future(py, handle, end_of_track, |_py, _result| {
             Ok(true)
         })
     }
